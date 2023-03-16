@@ -28,7 +28,13 @@ module.exports = {
   }, {}),
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './styles/[name].custom.css',
+      filename: () => {
+        if (mode === 'development') {
+          return '../assets/[name].custom.css';
+        }
+        
+        return './assets/[name].custom.css';
+      }
     }),
   ],
   stats: stats,
@@ -64,7 +70,7 @@ if (mode === "development") {
         scripts: ["echo Webpack build in progress...🛠"],
       },
       onBuildEnd: {
-        scripts: ["echo Build Complete 📦", "theme watch", "theme open"],
+        scripts: ["echo Build Complete 📦"],
         parallel: true,
       },
     })
