@@ -12,6 +12,7 @@ const WebpackShellPluginNext = require("webpack-shell-plugin-next");
 const mode =
   process.env.NODE_ENV === "development" ? "development" : "production";
 const devtool = mode === "development" ? "eval-cheap-source-map" : false;
+const enabledSourceMap = mode === 'development';
 const stats = mode === "development" ? "errors-warnings" : { children: false };
 const sass = require("node-sass");
 
@@ -45,16 +46,31 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               url: false,
+              sourceMap: enabledSourceMap,
+              // 0 => no loaders;
+              // 1 => postcss-loader;
+              // 2 => postcss-loader, sass-loader
+              importLoaders: 2,
             },
           },
-          "postcss-loader",
           {
-            loader: "sass-loader",
+            loader: 'postcss-loader',
             options: {
-              sourceMap: true,
+              sourceMap: enabledSourceMap,
+              postcssOptions: {
+                plugins: [
+                  ['autoprefixer', { grid: true }],
+                ],
+              },
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: enabledSourceMap,
             },
           },
         ],
