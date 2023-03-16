@@ -4,3 +4,4 @@ package-lock.json
 postcss.config.js
 src
 webpack.config.js
+.nvmrc
