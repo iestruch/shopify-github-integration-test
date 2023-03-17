@@ -4,11 +4,11 @@
   "description": "[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
   "main": "index.js",
   "scripts": {
-    "build": "npm-run-all webpack copy:css clear:temp",
-    "dev": "NODE_ENV=development webpack --config webpack.config.js --watch",
-    "webpack": "webpack --config webpack.config.js",
-    "clear:temp": "rimraf .tmp",
-    "copy:css": "cpx '.tmp/assets/**' assets",
+    "build": "npm-run-all webpack:prod clear:temp",
+    "webpack:watch": "NODE_ENV=development webpack --config .config/webpack.config.js --watch",
+    "webpack:dev": "NODE_ENV=development webpack --config .config/webpack.config.js",
+    "webpack:prod": "NODE_ENV=production webpack --config .config/webpack.config.js",
+    "clear:temp": "rimraf .tmp",    
     "inspect": "DEBUG=true node-nightly --inspect --debug-brk node_modules/.bin/webpack --env.debug --env.inspect",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/iestruch/shopify-github-integration-test#readme",
   "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "^1.0.6",
     "autoprefixer": "^10.4.14",
     "copy-webpack-plugin": "^11.0.0",
     "cpx": "^1.5.0",
@@ -35,6 +36,7 @@
     "postcss-loader": "^7.0.2",
     "postcss-minify": "^1.1.0",
     "pre-commit": "^1.2.2",
+    "prettier": "^2.8.4",
     "rimraf": "^4.4.0",
     "sass-loader": "^13.2.0",
     "webpack": "^5.76.1",

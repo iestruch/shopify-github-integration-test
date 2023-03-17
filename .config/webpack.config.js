@@ -15,12 +15,14 @@ const devtool = mode === "development" ? "eval-cheap-source-map" : false;
 const enabledSourceMap = mode === 'development';
 const stats = mode === "development" ? "errors-warnings" : { children: false };
 const sass = require("node-sass");
+const tempDir = path.resolve(__dirname, '../.tmp');
+const srcRelativeDir = '../';
 
 module.exports = {
   mode: mode,
   devtool: devtool,
   output: {
-    path: path.resolve(__dirname, '.tmp')
+    path: tempDir
   },
   entry: globSync('./src/**/*.js').reduce((acc, path) => {
     const entry = (/src\/([^\/]+)\/.*/).exec(path)[1];
@@ -30,11 +32,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: () => {
-        if (mode === 'development') {
-          return '../assets/[name].custom.css';
-        }
-        
-        return './assets/[name].custom.css';
+          return `${srcRelativeDir}/assets/[name].custom.css`;
       }
     }),
   ],
@@ -50,9 +48,6 @@ module.exports = {
             options: {
               url: false,
               sourceMap: enabledSourceMap,
-              // 0 => no loaders;
-              // 1 => postcss-loader;
-              // 2 => postcss-loader, sass-loader
               importLoaders: 2,
             },
           },
@@ -63,6 +58,7 @@ module.exports = {
               postcssOptions: {
                 plugins: [
                   ['autoprefixer', { grid: true }],
+                  'postcss-minify'
                 ],
               },
             },

@@ -5,3 +5,4 @@ postcss.config.js
 src
 webpack.config.js
 .nvmrc
+.config
