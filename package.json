@@ -8,7 +8,9 @@
     "webpack:watch": "NODE_ENV=development webpack --config .config/webpack.config.js --watch",
     "webpack:dev": "NODE_ENV=development webpack --config .config/webpack.config.js",
     "webpack:prod": "NODE_ENV=production webpack --config .config/webpack.config.js",
-    "clear:temp": "rimraf .tmp",    
+    "clear:temp": "rimraf .tmp",
+    "format:check": "prettier --check --ignore-path='.config/.prettierignore' --config='.config/.prettierrc' --plugin-search-dir=. '**/*.{js,liquid}'" ,
+    "format:fix": "prettier --write --ignore-path='.config/.prettierignore' --config='.config/.prettierrc' --plugin-search-dir=. '**/*.{js,liquid}'" ,
     "inspect": "DEBUG=true node-nightly --inspect --debug-brk node_modules/.bin/webpack --env.debug --env.inspect",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
