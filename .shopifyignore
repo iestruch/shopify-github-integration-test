@@ -6,3 +6,4 @@ src
 webpack.config.js
 .nvmrc
 .config
+.vscode
