@@ -13,6 +13,7 @@
     "prettier:fix": "prettier --write --ignore-path='.config/.prettierignore' --config='.config/.prettierrc' --plugin-search-dir=. '**/*.{js,liquid}'",
     "stylelint:check": "stylelint '**/*.{css,scss}' --config .config/.stylelintrc.json --ignore-path .config/.stylelintignore",
     "stylelint:fix": "stylelint '**/*.{css,scss}' --fix --config .config/.stylelintrc.json --ignore-path .config/.stylelintignore",
+    "lintstaged": "lint-staged --config .config/.lintstagedrc",
     "prepare": "husky install",
     "inspect": "DEBUG=true node-nightly --inspect --debug-brk node_modules/.bin/webpack --env.debug --env.inspect",
     "test": "echo \"Error: no test specified\" && exit 1"

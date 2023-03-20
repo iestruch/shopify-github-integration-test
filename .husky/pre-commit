@@ -3,4 +3,4 @@
 
 npm run webpack:prod
 git add .
-npx lint-staged --verbose --config .config/.lintstagedrc
+npm run lintstaged
