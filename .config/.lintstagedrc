@@ -1,3 +1,4 @@
 {    
-    "*.{js,scss,css}": ["npm run lint:fix --", "npm run webpack:prod", "git add --"]
+    "**/*.{js,liquid}": ["prettier --write --ignore-path=.config/.prettierignore --config=.config/.prettierrc --plugin-search-dir=. --", "git add"],
+    "**/*.{scss,css}": ["stylelint --fix --config .config/.stylelintrc.json --ignore-path .config/.stylelintignore", "git add"]
 }
