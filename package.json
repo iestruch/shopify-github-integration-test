@@ -8,7 +8,7 @@
     "webpack:watch": "NODE_ENV=development webpack --config .config/webpack.config.js --watch",
     "webpack:dev": "NODE_ENV=development webpack --config .config/webpack.config.js",
     "webpack:prod": "NODE_ENV=production webpack --config .config/webpack.config.js",
-    "clear:temp": "rimraf .tmp",    
+    "clear:temp": "rimraf .tmp",
     "prettier:check": "prettier --check --ignore-path='.config/.prettierignore' --config='.config/.prettierrc' --plugin-search-dir=. '**/*.{js,liquid}'",
     "prettier:fix": "prettier --write --ignore-path='.config/.prettierignore' --config='.config/.prettierrc' --plugin-search-dir=. '**/*.{js,liquid}'",
     "stylelint:check": "stylelint '**/*.{css,scss}' --config .config/.stylelintrc.json --ignore-path .config/.stylelintignore",
@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/iestruch/shopify-github-integration-test#readme",
   "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
     "@shopify/prettier-plugin-liquid": "^1.0.6",
     "autoprefixer": "^10.4.14",
     "copy-webpack-plugin": "^11.0.0",
