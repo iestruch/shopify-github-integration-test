@@ -7,3 +7,5 @@ webpack.config.js
 .nvmrc
 .config
 .vscode
+.husky
+.tmp
