@@ -19,7 +19,8 @@ module.exports = {
     path: tempDir,
   },
   entry: globSync('./src/**/*.js').reduce((acc, path) => {
-    const entry = /src\/([^\/]+)\/.*/.exec(path)[1];
+    console.log(path);
+    const entry = /src\/[scss|ts]+\/([^\/]+)\/.*/.exec(path)[1];
     acc[entry] = `./${path}`;
     return acc;
   }, {}),
