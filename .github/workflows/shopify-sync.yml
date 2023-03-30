@@ -1,0 +1,11 @@
+name: shopify-sync
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+  workflow_dispatch:
+
+jobs:
+  sync-dev-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "hello Github actions"
