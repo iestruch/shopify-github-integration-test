@@ -13,7 +13,7 @@ echo "Processing last commit"
 echo "$LAST_COMMIT_HASH | $LAST_COMMIT_AUTHOR - $LAST_COMMIT_MESSAGE"
 
 if [ "$LAST_COMMIT_AUTHOR" == "shopify[bot]" ];then
-    git checkout develop
+    git checkout origin/develop
     # git cherry-pick $LAST_COMMIT_HASH
     git merge origin/main
     git push origin develop
