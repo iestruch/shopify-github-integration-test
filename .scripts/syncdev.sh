@@ -8,6 +8,7 @@ LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%s)
 LAST_COMMIT_AUTHOR=$(git log -1 --pretty=%an)
 
 echo "Commit: $LAST_COMMIT_SHORT"
+echo $(git branch)
 echo $(git status -b | grep "On branch")
 echo "Processing last commit"
 echo "$LAST_COMMIT_HASH | $LAST_COMMIT_AUTHOR - $LAST_COMMIT_MESSAGE"
