@@ -6,6 +6,7 @@ LAST_COMMIT_HASH=$(git log -1 --pretty=%h)
 LAST_COMMIT_BODY=$(git log -1 --pretty=%b)
 LAST_COMMIT_AUTHOR=$(git log -1 --pretty=%an)
 
+echo $(git status -b | grep "On branch")
 echo "Processing last commit"
 echo "$LAST_COMMIT_HASH | $LAST_COMMIT_AUTHOR - $LAST_COMMIT_BODY"
 
