@@ -13,9 +13,8 @@ echo "Processing last commit"
 echo "$LAST_COMMIT_HASH | $LAST_COMMIT_AUTHOR - $LAST_COMMIT_MESSAGE"
 
 if [ "$LAST_COMMIT_AUTHOR" == "shopify[bot]" ];then
-    git config user.name github-actions
+    git config user.name  $LAST_COMMIT_AUTHOR
     git config user.email github-actions@github.com
-    git fetch origin develop
     git checkout develop
     # git cherry-pick $LAST_COMMIT_HASH
     git merge origin/main
