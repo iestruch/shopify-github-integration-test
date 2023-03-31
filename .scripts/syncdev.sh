@@ -22,7 +22,7 @@ if [ "$LAST_COMMIT_AUTHOR" == "shopify[bot]" ];then
         >&2 echo "ERROR: Failed to merge '$ORIGIN_BRANCH' in '$DESTINY_BRANCH'"
         exit 1
     fi
-    if ! git push origin ERROR_BRANCH ; then
+    if ! git push origin $DESTINY_BRANCH ; then
         >&2 echo "ERROR: Failed to push merge operation to '$DESTINY_BRANCH'"
         exit 1
     fi
