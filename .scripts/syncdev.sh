@@ -2,7 +2,7 @@
 ORIGIN_BRANCH="main"
 DESTINY_BRANCH="develop"
 
-LAST_COMMIT_INFO=$(git kk)
+LAST_COMMIT_INFO=$(git shortlog -1 --format=reference)
 LAST_COMMIT_HASH=$(git log -1 --pretty=%h)
 LAST_COMMIT_AUTHOR=$(git log -1 --pretty=%an)
 
