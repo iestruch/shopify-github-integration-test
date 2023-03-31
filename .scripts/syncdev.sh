@@ -5,6 +5,11 @@ DESTINY_BRANCH="develop"
 LAST_COMMIT_HASH=$(git log -1 --pretty=%h)
 LAST_COMMIT_AUTHOR=$(git log -1 --pretty=%an)
 
+if [ ! $LAST_COMMIT_HASH ] || [ ! $LAST_COMMIT_AUTHOR ];then
+    >&2 echo "ERROR: No commit info available"
+    exit 1
+fi
+
 echo "Processing last commit"
 echo "${git shortlog -1 --format=reference}"
 
