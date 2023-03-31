@@ -6,7 +6,7 @@ on:
       - develop
   workflow_run:
     workflows: ["shopify-sync"]
-    types: [requested]
+    types: [completed]
     branches:
       - 'main'
 jobs:
