@@ -18,11 +18,11 @@ if [ "$LAST_COMMIT_AUTHOR" == "shopify[bot]" ];then
     git config user.name  $LAST_COMMIT_AUTHOR
     git config user.email no-reply@github.com
     git checkout $DESTINY_BRANCH
-    if ! git merge origin/'$ORIGIN_BRANCH'C; then
+    if ! git merge origin/'$ORIGIN_BRANCH'; then
         >&2 echo "ERROR: Failed to merge '$ORIGIN_BRANCH' in '$DESTINY_BRANCH'"
         exit 1
     fi
-    if ! git push origin $DESTINY_BRANCH; then
+    if ! git push origin '$DESTINY_BRANCH'C; then
         >&2 echo "ERROR: Failed to push merge operation to '$DESTINY_BRANCH'"
         exit 1
     fi
