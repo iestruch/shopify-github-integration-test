@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - develop
-  workflow_run:
-    workflows: ["shopify-sync"]
-    types: [requested]
-    branches:
-      - 'main'
 jobs:
   deploy:
     name: Deploy
