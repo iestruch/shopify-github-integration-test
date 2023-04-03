@@ -13,8 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: test
-        run: git status
+        with:
+          ref: develop
+      - name: Extract branch name
+        shell: bash
+        run: echo "${GITHUB_REF#refs/heads/})"
       - uses: actions/setup-node@v3
         with:
           node-version: 18
