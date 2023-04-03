@@ -16,7 +16,7 @@ jobs:
         with:
           ref: develop
       - name: Print branch name
-        run: echo "The active branch is ${{ github.ref }}"
+        run: echo "The active branch is ${{ git rev-parse --abbrev-ref HEAD }}"
       - uses: actions/setup-node@v3
         with:
           node-version: 18
