@@ -1,4 +1,4 @@
-name: shopify-deploy
+name: shopify-deploy-uat
 on:
   workflow_dispatch:
 jobs:
