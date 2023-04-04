@@ -12,9 +12,19 @@ jobs:
     environment: QA
     runs-on: ubuntu-latest
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+        id: extract_branch
+      - name: Check is main the origin
+        if: ${{steps.extract.branch.output.branch == "main"}}
+        run: echo "branch=develop" >>$GITHUB_ENV
+      - name: Check is not main the origin
+        if: ${{steps.extract.branch.output.branch != "main"}}
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_ENV
       - uses: actions/checkout@v1
         with:
-          ref: develop
+          ref: ${{vars.branch}}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
