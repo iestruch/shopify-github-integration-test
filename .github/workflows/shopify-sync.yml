@@ -32,7 +32,11 @@ jobs:
         shell: bash
         run: ls -la ./.scripts
       - uses: ./.github/workflows/deploy.yml
-        if: env.mergedev == 1
-        with:
-          environment: QA
-          branch: develop
+        
+
+  deploy:
+    uses: ./.github/workflows/deploy.yml
+    if: env.mergedev == 1
+    with:
+      environment: QA
+      branch: develop
