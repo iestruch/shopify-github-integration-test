@@ -9,6 +9,8 @@ on:
 jobs:
   sync-dev-branch:
     runs-on: ubuntu-latest
+    outputs:
+      mergedev: ${{ steps.setOuputStep.output.test }}
     steps:
       - name: user
         if: github.actor == 'shopify[bot]'
@@ -18,9 +20,10 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/hotfix')
         shell: bash
         run: echo "mergedev=1">>$GITHUB_ENV
-      - name: check merge condition
+      - name: set output
+        id: setOuputStep
         shell: bash
-        run: echo ${{ env.mergedev }}
+        run: echo "output=${{ env.mergedev }}" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -36,7 +39,8 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/deploy.yml
-    if: env.mergedev == 1
+    needs: sync-dev-branch
+    if: needs.sync-dev-branch.outputs.output == 1
     with:
       environment: QA
       branch: develop
