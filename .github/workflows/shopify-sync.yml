@@ -23,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: testOutput
     steps:
+      - name: test output
+        run: echo ${{ needs.testOutput.outputs.mergedev }}
       - uses: henrygriffiths/debug_action@v1
         with:
           contexts: 'needs'         
