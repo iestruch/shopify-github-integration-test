@@ -13,18 +13,18 @@ jobs:
       - name: user
         if: github.actor == 'shopify[bot]'
         shell: bash
-        run: echo "mergedev=$(echo 1)">>$GITHUB_ENV
+        run: echo "mergedev=1">>$GITHUB_ENV
       - name: branch
         if: startsWith(github.ref, 'refs/heads/hotfix')
         shell: bash
-        run: echo "mergedev=$(echo 1)">>$GITHUB_ENV
+        run: echo "mergedev=1">>$GITHUB_ENV
       - name: check merge condition
         shell: bash
-        run: echo ${{ vars.mergedev }}
+        run: echo ${{ env.mergedev }}
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Sync develop branch
-        if: vars.mergedev == 1
+        if: env.mergedev == 1
         shell: bash
         run: ./.scripts/syncdev.sh
