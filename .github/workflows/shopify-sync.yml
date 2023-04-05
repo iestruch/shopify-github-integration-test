@@ -1,5 +1,5 @@
 name: shopify-sync
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: sync dev branch
 on:
   workflow_dispatch:
   push:
