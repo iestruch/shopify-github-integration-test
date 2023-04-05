@@ -33,7 +33,7 @@ jobs:
         run: ./.scripts/syncdev.sh      
 
   deploy:
-    uses: ./.scripts/deploy.yml
+    uses: ./.github/workflows/deploy.yml
     secrets: inherit
     needs: syncDevBranch
     if: needs.syncDevBranch.outputs.mergedev == 1
