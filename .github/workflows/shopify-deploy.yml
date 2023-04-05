@@ -17,7 +17,7 @@ jobs:
         shell: bash
         run: echo branch=develop >> $GITHUB_ENV
       - name: Set branch
-        if: vars.branch !== 'develop'
+        if: vars.branch != 'develop'
         shell: bash
         run: echo branch=${{github.ref_name}}
       - name: Check branch
