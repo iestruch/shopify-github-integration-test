@@ -13,11 +13,14 @@ jobs:
       - name: user
         shell: bash
         if: ${{ github.actor }} == "shopify[bot]"
-        run: echo "mergedev=$(echo 1)" >> $GITHUB_ENV
+        run: echo "mergedev=$(echo 1)">>$GITHUB_ENV
       - name: branch
         shell: bash
         if: startsWith(${{ github.ref }}, 'refs/heads/hotfix')
-        run: echo "mergedev=$(echo 1)" >> $GITHUB_ENV
+        run: echo "mergedev=$(echo 1)">>$GITHUB_ENV
+      - name: check
+        shell: bash
+        run: echo ${{ vars.mergedev }}
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
