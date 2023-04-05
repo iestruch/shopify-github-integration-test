@@ -31,7 +31,7 @@ jobs:
       - name: Sync develop branch
         shell: bash
         run: ls -la ./.scripts
-      - uses: ./.scripts/deploy.yml
+      - uses: ./.github/workflows/deploy.yml
         if: env.mergedev == 1
         with:
           environment: QA
