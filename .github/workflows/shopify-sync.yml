@@ -16,6 +16,8 @@ jobs:
         id: setouput
         shell: bash
         run: echo "mergedev=1">>$GITHUB_OUTPUT
+      - name: test output
+        run: echo ${{ steps.setouput.outputs.mergedev }}
       
   test:
     runs-on: ubuntu-latest
