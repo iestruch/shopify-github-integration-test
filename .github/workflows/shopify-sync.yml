@@ -30,7 +30,7 @@ jobs:
         run: ./.scripts/syncdev.sh
       - name: Sync develop branch
         shell: bash
-        run: ls -la .
+        run: ls -la ./.scripts
       - uses: './.scripts/deploy.yml'
         if: env.mergedev == 1
         with:
