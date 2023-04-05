@@ -25,6 +25,6 @@ jobs:
         with:
           fetch-depth: 0
       - name: Sync develop branch
-        if: ${{ vars.mergedev }} == 1
+        if: vars.mergedev == 1
         shell: bash
         run: ./.scripts/syncdev.sh
