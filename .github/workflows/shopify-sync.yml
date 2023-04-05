@@ -10,7 +10,7 @@ jobs:
   testOutput:
     runs-on: ubuntu-latest
     outputs:
-      mergedev: ${{ steps.setouput.output.mergedev }}
+      mergedev: ${{ steps.setouput.outputs.mergedev }}
     steps:
       - name: set-output
         id: setouput
