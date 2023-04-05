@@ -1,11 +1,9 @@
 name: shopify-deploy
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["shopify-sync"]
-    types: [completed]
+  push:
     branches:
-      - 'main'
+      - 'develop'
 jobs:
   deploy:
     name: Deploy
