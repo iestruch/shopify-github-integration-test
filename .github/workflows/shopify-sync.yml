@@ -31,12 +31,7 @@ jobs:
         if: env.mergedev == 1
         shell: bash
         run: ./.scripts/syncdev.sh
-      - name: Sync develop branch
-        shell: bash
-        run: ls -la ./.scripts
-      - uses: ./.github/workflows/deploy.yml
-        
-
+      
   deploy:
     uses: ./.github/workflows/deploy.yml
     needs: sync-dev-branch
