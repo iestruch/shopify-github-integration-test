@@ -1,4 +1,4 @@
-name: shopify-deploy
+name: shopify-deploy-qa
 on:
   workflow_dispatch:
   push:
