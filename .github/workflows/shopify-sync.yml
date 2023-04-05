@@ -15,7 +15,7 @@ jobs:
         run: echo ${{ github.actor }}
       - name: branch
         shell: bash
-        run: echo ${{ github.ref }}
+        run: echo startsWith(${{ github.ref }}, 'refs/heads/hotfix')
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
