@@ -12,37 +12,15 @@ jobs:
     environment: QA
     runs-on: ubuntu-latest
     steps:
-      - name: Extract branch name
+      - name: Validate is hook from sync
+        if: github.event_name == 'workflow_run'
         shell: bash
-        run: echo ${{ github.ref }} - ${{ github.ref_name }}
-      - name: Extract branch name
-        if: startsWith(github.ref, 'refs/heads/main')
+        run: echo branch=develop >> $GITHUB_ENV
+      - name: Set branch
+        if: vars.branch !== 'develop'
         shell: bash
-        run: echo "activebranchmain=1" >> $GITHUB_ENV
-      - name: Check is main the origin
-        if: vars.activebranchmain == 1
-        run: echo "branch=develop" >>$GITHUB_ENV
-      - name: Check is not main the origin
-        if: vars.activebranchmain != 1
-        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_ENV
-      - name: check branch to deploy
+        run: echo branch=${{github.ref_name}}
+      - name: Check branch
         shell: bash
-        run: echo ${{ vars.branch }}
-      - uses: actions/checkout@v1
-        with:
-          ref: ${{vars.branch}}
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1
-          bundler: 'latest'
-      - name: Install Shopify CLI
-        run: npm install -g @shopify/cli @shopify/theme
-      - name: Deploy
-        env:
-          SHOPIFY_FLAG_STORE: '${{ secrets.SHOPIFY_STORE }}'
-          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
-          SHOPIFY_CLI_TTY: 0
-        run: shopify theme push --path . --theme ${{ vars.SHOPIFY_THEME_ID }}
+        run: echo ${{vars.branch}}
+
