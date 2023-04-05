@@ -7,30 +7,15 @@ on:
       - main
 
 jobs:
-  syncDevBranch:
+  testOutput:
     runs-on: ubuntu-latest
     outputs:
-      mergedev: ${{ steps.setOuputStep.output.output }}
+      mergedev: ${{ steps.setouput.output.mergedev }}
     steps:
-      - name: user
-        if: github.actor == 'shopify[bot]'
+      - name: set-output
+        id: setouput
         shell: bash
-        run: echo "mergedev=1">>$GITHUB_ENV
-      - name: branch
-        if: startsWith(github.ref, 'refs/heads/hotfix')
-        shell: bash
-        run: echo "mergedev=1">>$GITHUB_ENV
-      - name: set output
-        id: setOuputStep
-        shell: bash
-        run: echo "output=${{ env.mergedev }}" >> "$GITHUB_OUTPUT"
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Sync develop branch
-        if: env.mergedev == 1
-        shell: bash
-        run: ./.scripts/syncdev.sh
+        run: echo "mergedev=1">>$GITHUB_OUTPUT
       
   test:
     runs-on: ubuntu-latest
