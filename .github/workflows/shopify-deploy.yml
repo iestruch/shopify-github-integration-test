@@ -15,12 +15,12 @@ jobs:
       - name: Validate is hook from sync
         if: github.event_name == 'workflow_run'
         shell: bash
-        run: echo branch=develop >> $GITHUB_ENV
+        run: echo "branch=develop" >> $GITHUB_ENV
       - name: Set branch
-        if: vars.branch != 'develop'
+        if: env.branch != 'develop'
         shell: bash
-        run: echo branch=${{github.ref_name}}
+        run: echo "branch=${{github.ref_name}}" >> $GITHUB_ENV
       - name: Check branch
         shell: bash
-        run: echo ${{vars.branch}}
+        run: echo ${{env.branch}}
 
