@@ -18,7 +18,7 @@ jobs:
         if: startsWith(github.ref, 'refs/heads/hotfix')
         shell: bash
         run: echo "mergedev=$(echo 1)">>$GITHUB_ENV
-      - name: check
+      - name: check merge condition
         shell: bash
         run: echo ${{ vars.mergedev }}
       - uses: actions/checkout@v3

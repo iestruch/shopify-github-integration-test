@@ -22,6 +22,9 @@ jobs:
       - name: Check is not main the origin
         if: ${{steps.extract.branch.output.branch }} != "main"
         run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_ENV
+      - name: check branch to deploy
+        shell: bash
+        run: echo ${{ vars.branch }}
       - uses: actions/checkout@v1
         with:
           ref: ${{vars.branch}}
