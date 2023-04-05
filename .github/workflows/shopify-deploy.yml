@@ -15,12 +15,12 @@ jobs:
       - name: Extract branch name
         if: startsWith(github.ref, 'refs/heads/main')
         shell: bash
-        run: echo "activebranch=main" >> $GITHUB_ENV
+        run: echo "activebranchmain=1" >> $GITHUB_ENV
       - name: Check is main the origin
-        if: ${{ vars.activebranch }} == "main"
+        if: vars.activebranchmain == 1
         run: echo "branch=develop" >>$GITHUB_ENV
       - name: Check is not main the origin
-        if: ${{ vars.activebranch }} != "main"
+        if: vars.activebranchmain != 1
         run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_ENV
       - name: check branch to deploy
         shell: bash
