@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - 'develop'
+  pull-request:
+    branches:
+      - 'develop'
+    types:
+      [closed]
 jobs:
   deploy:
     name: Deploy
@@ -13,14 +18,22 @@ jobs:
       - name: Validate is hook from sync
         if: github.event_name == 'workflow_run'
         shell: bash
-        run: echo "branch=develop" >> $GITHUB_ENV
+        run: |
+          echo "branch=develop" >> $GITHUB_ENV
+          echo "deploy=1" >> $GITHUB_ENV
       - name: Set branch
         if: env.branch != 'develop'
         shell: bash
-        run: echo "branch=${{github.ref_name}}" >> $GITHUB_ENV
+        run: |
+          echo "branch=${{github.ref_name}}" >> $GITHUB_ENV
+          echo "deploy=1" >> $GITHUB_ENV
       - name: Check branch
         shell: bash
         run: echo ${{env.branch}}
+      - name: Check pull request merged
+        shell: bash
+        run: |
+          echo "${{github.event.pull_request}}"
       - uses: actions/checkout@v1
         with:
           ref: ${{ env.branch }}
