@@ -7,33 +7,35 @@ on:
       - main
 
 jobs:
-  testOutput:
+  syncDevBranch:
     runs-on: ubuntu-latest
     outputs:
-      mergedev: ${{ steps.setouput.outputs.mergedev }}
+      mergedev: ${{ steps.setOuputStep.outputs.output }}
     steps:
-      - name: set-output
-        id: setouput
+      - name: user
+        if: github.actor == 'shopify[bot]'
         shell: bash
-        run: echo "mergedev=1">>$GITHUB_OUTPUT
-      - name: test output
-        run: echo ${{ steps.setouput.outputs.mergedev }}
-      
-  test:
-    runs-on: ubuntu-latest
-    needs: testOutput
-    steps:
-      - name: test output
-        run: echo ${{ needs.testOutput.outputs.mergedev }}
-      - uses: henrygriffiths/debug_action@v1
+        run: echo "mergedev=1">>$GITHUB_ENV
+      - name: branch
+        if: startsWith(github.ref, 'refs/heads/hotfix')
+        shell: bash
+        run: echo "mergedev=1">>$GITHUB_ENV
+      - name: set output
+        id: setOuputStep
+        shell: bash
+        run: echo "output=${{ env.mergedev }}" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v3
         with:
-          contexts: 'needs'         
-          needs_context: ${{ toJson(needs) }}
+          fetch-depth: 0
+      - name: Sync develop branch
+        if: env.mergedev == 1
+        shell: bash
+        run: ./.scripts/syncdev.sh      
 
-#  deploy:
-#    uses: ./.github/workflows/deploy.yml
-#    needs: sync-dev-branch
-#    if: needs.sync-dev-branch.outputs.output == 1
-#    with:
-#      environment: QA
-#      branch: develop
+  deploy:
+    uses: ./.github/workflows/deploy.yml
+    needs: syncDevBranch
+    if: needs.syncDevBranch.outputs.mergedev == 1
+    with:
+      environment: QA
+      branch: develop
