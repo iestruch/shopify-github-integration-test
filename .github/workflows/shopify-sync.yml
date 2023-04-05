@@ -28,7 +28,10 @@ jobs:
         if: env.mergedev == 1
         shell: bash
         run: ./.scripts/syncdev.sh
-      - uses: '/.scripts/deploy.yml'
+      - name: Sync develop branch
+        shell: bash
+        run: ls -la .
+      - uses: './.scripts/deploy.yml'
         if: env.mergedev == 1
         with:
           environment: QA
