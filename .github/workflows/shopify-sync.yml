@@ -34,6 +34,7 @@ jobs:
 
   deploy:
     uses: ./.github/workflows/deploy.yml
+    secrets: inherit
     needs: syncDevBranch
     if: needs.syncDevBranch.outputs.mergedev == 1
     with:
