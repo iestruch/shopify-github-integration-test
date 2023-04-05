@@ -19,7 +19,7 @@ jobs:
       
   test:
     runs-on: ubuntu-latest
-    needs: syncDevBranch
+    needs: testOutput
     steps:
       - uses: henrygriffiths/debug_action@v1
         with:
