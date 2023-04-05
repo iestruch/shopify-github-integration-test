@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   deploy:
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.scripts/deploy.yml
     secrets: inherit
     with:
       environment: UAT

@@ -6,7 +6,7 @@ on:
       - 'develop'
 jobs:
   deploy:
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.scripts/deploy.yml
     secrets: inherit
     with:
       environment: QA
