@@ -1,5 +1,5 @@
 name: shopify-sync
-run-name: sync dev branch
+run-name: sync dev branch and deploy to QA
 on:
   workflow_dispatch:
   push:
@@ -28,7 +28,7 @@ jobs:
         if: env.mergedev == 1
         shell: bash
         run: ./.scripts/syncdev.sh
-      - uses: './deploy.yml'
+      - uses: './scripts/deploy.yml'
         if: env.mergedev == 1
         with:
           environment: QA
