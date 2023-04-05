@@ -11,12 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: user
-        if: false
-        run: |
-          bash echo ${{github.actor}}
-          bash echo "mergedev=$(echo 1)">>$GITHUB_ENV
+        if: github.actor == 'shopify[bot]'
+        shell: bash
+        run: echo "mergedev=$(echo 1)">>$GITHUB_ENV
       - name: branch
-        if: startsWith(${{github.ref}}, 'refs/heads/hotfix')
+        if: startsWith(github.ref, 'refs/heads/hotfix')
         shell: bash
         run: echo "mergedev=$(echo 1)">>$GITHUB_ENV
       - name: check
