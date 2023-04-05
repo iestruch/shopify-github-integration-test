@@ -15,7 +15,8 @@ jobs:
         run: echo ${{ github.actor }}
       - name: branch
         shell: bash
-        run: echo startsWith(${{ github.ref }}, 'refs/heads/hotfix')
+        if: startsWith(${{ github.ref }}, 'refs/heads/hotfix')
+        run: echo hotfix
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
