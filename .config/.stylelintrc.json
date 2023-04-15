@@ -3,12 +3,17 @@
     "plugins": ["stylelint-scss", "stylelint-prettier"],
     "syntax": "scss",
     "rules": {
+      "keyframes-name-pattern":null,
+      "selector-id-pattern":null,
+      "font-family-no-missing-generic-family-keyword":null,
+      "keyframe-block-no-duplicate-selectors":null,
+      "declaration-block-no-duplicate-custom-properties":null,
       "comment-whitespace-inside": null,
       "custom-property-pattern": null,
       "prettier/prettier": [
         true,
         {
-          "printWidth": 100,
+          "printWidth": 200,
           "tabWidth": 2,
           "useTabs": false,
           "singleQuote": true,

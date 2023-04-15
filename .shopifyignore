@@ -1,12 +1,17 @@
 .config
 .docs
+.github
 .husky
+.scripts
 .shopify
 .tmp
 .vscode
+e2e
 node_modules
+playwright-report
 src
 .env
+.env.template
 .gitignore
 .nvmrc
 tsconfig.json
