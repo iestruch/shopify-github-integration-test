@@ -1,0 +1,14 @@
+.config
+.docs
+.husky
+.shopify
+.tmp
+.vscode
+node_modules
+src
+.env
+.gitignore
+.nvmrc
+tsconfig.json
+package.json
+package-lock.json
