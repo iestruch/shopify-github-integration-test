@@ -1,0 +1,4 @@
+{    
+    "**/*.{js,liquid}, !**/*.bundle.js}": ["prettier --write --verbose --ignore-path=.config/.prettierignore --config=.config/.prettierrc --plugin-search-dir=. --"],
+    "**/*.{scss,css}, !**/*.custom.css": ["stylelint --fix --config .config/.stylelintrc.json --ignore-path .config/.stylelintignore"]
+}

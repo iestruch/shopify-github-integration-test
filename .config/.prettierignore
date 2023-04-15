@@ -1,0 +1,12 @@
+**/node_modules/
+**/*.min.js
+.husky
+.github
+.config/
+
+announcement-bar.liquid
+header.liquid
+main-product.liquid
+main-search.liquid
+product-media.liquid
+product-thumbnail.liquid
