@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run webpack:prod
+git diff --name-only --cached --diff-filter=d | xargs git add
+npx lint-staged --config .config/.lintstagedrc

@@ -1,0 +1,45 @@
+{
+    "extends": ["stylelint-config-standard", "stylelint-config-standard-scss", "stylelint-prettier/recommended"],
+    "plugins": ["stylelint-scss", "stylelint-prettier"],
+    "syntax": "scss",
+    "rules": {
+      "comment-whitespace-inside": null,
+      "custom-property-pattern": null,
+      "prettier/prettier": [
+        true,
+        {
+          "printWidth": 100,
+          "tabWidth": 2,
+          "useTabs": false,
+          "singleQuote": true,
+          "trailingComma": "all",
+          "bracketSpacing": false
+        }
+      ],
+      "value-no-vendor-prefix": null,
+      "property-no-vendor-prefix": null,
+      "declaration-block-no-shorthand-property-overrides": null,
+      "no-descending-specificity": null,
+      "no-duplicate-selectors": null,
+      "block-no-empty": null,
+      "selector-class-pattern": null,
+      "rule-empty-line-before": [
+        "always",
+        {
+          "except": ["after-single-line-comment", "first-nested"],
+          "ignore": ["after-comment", "first-nested"]
+        }
+      ],
+      "at-rule-empty-line-before": [
+        "always",
+        {
+          "except": ["first-nested", "blockless-after-blockless"],
+          "ignore": ["after-comment"],
+          "ignoreAtRules": ["else"]
+        }
+      ],
+      "at-rule-no-unknown": null,
+      "scss/at-rule-no-unknown": true,
+      "function-no-unknown": null      
+    }
+  }
