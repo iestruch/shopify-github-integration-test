@@ -5,6 +5,9 @@ jobs:
   tests_e2e:
     name: Run end-to-end tests
     runs-on: ubuntu-latest
+    env:
+      E2E_SHOP_URL: ${{ secrets.E2E_SHOP_URL }}
+      E2E_SHOP_PASS: ${{ secrets.E2E_SHOP_PASS }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
