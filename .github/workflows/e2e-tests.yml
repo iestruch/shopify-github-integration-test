@@ -1,4 +1,4 @@
-name: shopify-deploy-block
+name: e2e-tests
 on:
   workflow_dispatch:
 jobs:
