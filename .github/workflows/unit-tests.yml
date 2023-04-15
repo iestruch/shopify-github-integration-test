@@ -1,0 +1,19 @@
+name: unit-tests
+on:
+  workflow_dispatch:
+jobs:
+  tests_e2e:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    env:
+      E2E_SHOP_URL: ${{ secrets.E2E_SHOP_URL }}
+      E2E_SHOP_PASS: ${{ secrets.E2E_SHOP_PASS }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+            node-version: '19'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm run unit
