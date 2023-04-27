@@ -16,3 +16,4 @@ jobs:
         store: ${{ secrets.SHOPIFY_STORE }}
         password: ${{ secrets.SHOPIFY_STORE_PASSWORD }}
         pull_theme: LHCI
+        lhci_min_score_performance: 0.9
