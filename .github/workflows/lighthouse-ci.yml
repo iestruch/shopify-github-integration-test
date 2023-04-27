@@ -15,3 +15,4 @@ jobs:
         access_token: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
         store: ${{ secrets.SHOPIFY_STORE }}
         password: ${{ secrets.SHOPIFY_STORE_PASSWORD }}
+        pull_theme: LHCI
