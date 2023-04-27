@@ -15,5 +15,5 @@ test('Access test', async ({ page }) => {
   // Press enter
   await page.keyboard.press("Enter"); 
 
-  await expect(await page.locator('[id*=__rich_text] .rich-text__heading span')).toHaveText('Talk about your brand 2');
+  await expect(await page.locator('[id*=__rich_text] .rich-text__heading span')).toHaveText('Talk about your brand');
 });
