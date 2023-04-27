@@ -1,0 +1,17 @@
+name: Shopify Lighthouse CI
+on:
+    workflow_dispatch:
+    workflow_call:        
+jobs:
+  lhci:
+    name: Lighthouse
+    environment: LHCI
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Lighthouse
+      uses: shopify/lighthouse-ci-action@v1
+      with:
+        access_token: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+        store: ${{ secrets.SHOPIFY_STORE }}
+        password: ${{ secrets.SHOPIFY_STORE_PASSWORD }}
