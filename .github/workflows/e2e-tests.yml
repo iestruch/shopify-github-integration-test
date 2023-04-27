@@ -1,11 +1,11 @@
 name: e2e-tests
 on:
-  workflow_dispatch:
-  pull_request:
+  workflow_call:
 jobs:
   tests_e2e:
     name: Run end-to-end tests
     runs-on: ubuntu-latest
+    environment: LHCI
     env:
       E2E_SHOP_URL: ${{ secrets.E2E_SHOP_URL }}
       E2E_SHOP_PASS: ${{ secrets.E2E_SHOP_PASS }}

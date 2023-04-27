@@ -13,6 +13,7 @@ test('Access test', async ({ page }) => {
   // Fill input[name="password"]
   await page.locator('input[name="password"]').fill(SHOP_PASS);
   // Press enter
-  await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(SHOP_URL);
+  await page.keyboard.press("Enter"); 
+
+  await expect(await page.locator('[id*=__rich_text] .rich-text__heading span')).toHaveText('Talk about your brand 2');
 });
