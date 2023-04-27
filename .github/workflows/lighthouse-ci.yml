@@ -17,4 +17,5 @@ jobs:
         password: ${{ secrets.SHOPIFY_STORE_PASSWORD }}
         pull_theme: LHCI
         lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-        lhci_min_score_performance: 0.9
+        lhci_min_score_performance: ${{ vars.LHCI_MIN_PERFORMANCE }}
+        lhci_min_score_accessibility: ${{ vars.LHCI_MIN_ACCESSIBILITY }}
