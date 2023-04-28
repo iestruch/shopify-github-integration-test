@@ -41,6 +41,6 @@ jobs:
       - name: Clean up development theme
         shell: bash
         run: |
-          shopify delete -d -f --theme ${{env.theme_id}} --password ${{env.SHOPIFY_CLI_THEME_TOKEN}}
+          shopify delete -d -f --theme ${{env.theme_id}} --password ${{secrets.SHOPIFY_CLI_THEME_TOKEN}}
         
 
