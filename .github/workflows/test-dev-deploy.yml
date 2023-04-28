@@ -40,7 +40,10 @@ jobs:
         run: npx playwright test --config .config/playwright.config.ts
       - name: Clean up development theme
         shell: bash
-        run: |
-          shopify delete -d -f --theme ${{env.theme_id}} --password ${{secrets.SHOPIFY_CLI_THEME_TOKEN}}
+        env:
+          SHOPIFY_FLAG_STORE: "${{ secrets.SHOPIFY_STORE }}"
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_CLI_TTY: 0
+        run: shopify theme delete -d -f --theme ${{env.theme_id}}
         
 
