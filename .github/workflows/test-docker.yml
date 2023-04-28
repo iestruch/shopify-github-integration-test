@@ -20,8 +20,6 @@ jobs:
           lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
           lhci_min_score_performance: ${{ vars.LHCI_MIN_PERFORMANCE }}
           lhci_min_score_accessibility: ${{ vars.LHCI_MIN_ACCESSIBILITY }}
-      -name: test        
-        shell: bash
-        run: echo "end"
+
 
 
