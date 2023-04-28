@@ -1,7 +1,7 @@
 name: test-dev-deploy
 on:
   workflow_dispatch:
-jobs
+jobs:
   dev-deploy:
     name: temporal deploy
     runs-on: ubuntu-latest
