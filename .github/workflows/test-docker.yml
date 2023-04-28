@@ -1,7 +1,9 @@
 name: docker action
 on:
   workflow_dispatch:
-  push:['feaure/action-w']
+  push:
+    branches:
+      - feature/action-*
 jobs:
   test:
     runs-on: ubuntu-latest
