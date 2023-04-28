@@ -25,9 +25,22 @@ jobs:
         shell: bash
         run: |
           theme_push_log="$(mktemp)"
-          shopify theme push --path . --development --json > "$theme_push_log" && cat "$theme_push_log"
+          shopify theme push --path . --development --json --password ${{env.SHOPIFY_CLI_THEME_TOKEN}} > "$theme_push_log" && cat "$theme_push_log"
           preview_url="$(cat "$theme_push_log" | tail -n 1 | jq -r '.theme.preview_url')"
           preview_id="$(cat "$theme_push_log" | tail -n 1 | jq -r '.theme.id')"
-          echo "Preview url: $preview_url"
-          echo "Theme id: $preview_id"
+          echo "url=$preview_url">>$GITHUB_ENV
+          echo "theme_id=$preview_id">>$GITHUB_ENV
+      - name: Install dependencies
+        run: npm ci
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
+      - name: Run E2E tests
+        env:
+          E2E_SHOP_URL: "${{ env.url }}"
+        run: npx playwright test --config .config/playwright.config.ts
+      - name: Clean up development theme
+        shell: bash
+        run: |
+          shopify delete -d -f --theme ${{env.theme_id}} --password ${{env.SHOPIFY_CLI_THEME_TOKEN}}
+        
 
