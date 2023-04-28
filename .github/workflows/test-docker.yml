@@ -22,5 +22,6 @@ jobs:
           lhci_min_score_accessibility: ${{ vars.LHCI_MIN_ACCESSIBILITY }}
       -name: test        
         shell: bash
+        run: echo "end"
 
 
