@@ -211,7 +211,7 @@ ci:
         - "--disable-dev-shm-usage"
         - "--disable-gpu"
   upload:
-    target: temporary-public-storage
+    target: filesystem
   assert:
     assertions:
       "categories:performance":
@@ -250,4 +250,4 @@ EOF
 
 step "Running Lighthouse CI"
 lhci autorun
-echo "proceso finalizado"
+cleanup
