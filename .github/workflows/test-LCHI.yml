@@ -1,6 +1,7 @@
 name: test-LHCI
 on:
   workflow_dispatch:
+  pull_request:
 jobs:
   dev-deploy:
     name: temporal deploy
