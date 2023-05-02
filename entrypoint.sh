@@ -250,4 +250,6 @@ EOF
 
 step "Running Lighthouse CI"
 lhci autorun
-shopify theme delete -f --theme $preview_id
+echo "shopify theme delete -f --store $SHOP_STORE  --password $SHOP_ACCESS_TOKEN --theme $preview_id"
+shopify theme delete -f --store $SHOP_STORE  --password $SHOP_ACCESS_TOKEN --theme $preview_id
+
