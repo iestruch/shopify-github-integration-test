@@ -37,6 +37,8 @@
 # # Add global node bin to PATH (from the Dockerfile)
 # export PATH="$PATH:$npm_config_prefix/bin"
 
+export THEME_ROOT = "."
+
 # END of GitHub Action Specific Code
 ####################################################################
 
