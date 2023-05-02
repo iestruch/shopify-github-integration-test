@@ -1,0 +1,43 @@
+name: test-dev-deploy
+on:
+  workflow_dispatch:
+jobs:
+  dev-deploy:
+    name: temporal deploy
+    runs-on: ubuntu-latest
+    environment: LHCI
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+          bundler: "latest"
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli @shopify/theme
+      - name: Deploy
+        env:
+          SHOPIFY_FLAG_STORE: "${{ secrets.SHOPIFY_STORE }}"
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_CLI_TTY: 0
+        shell: bash
+        run: |
+          theme_push_log="$(mktemp)"
+          shopify theme push --path . --development --json --password ${{env.SHOPIFY_CLI_THEME_TOKEN}} > "$theme_push_log" && cat "$theme_push_log"
+          preview_url="$(cat "$theme_push_log" | tail -n 1 | jq -r '.theme.preview_url')"
+          preview_id="$(cat "$theme_push_log" | tail -n 1 | jq -r '.theme.id')"
+          echo "url=$preview_url">>$GITHUB_ENV
+          echo "theme_id=$preview_id">>$GITHUB_ENV
+      - name: Clean development theme
+        env:
+          SHOPIFY_FLAG_STORE: "${{ secrets.SHOPIFY_STORE }}"
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          SHOPIFY_CLI_TTY: 0
+        shell: bash
+        run: |
+          echo "Removing theme {{env.theme_id}}"
+          shopify theme delete --development --password ${{env.SHOPIFY_CLI_THEME_TOKEN}} --theme {{env.theme_id}}
+        
+
