@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Lighthouse CI action
-        uses: ./
+        uses: ./.scripts/action.yml
         id: lighthouse-ci-action
         with:
           access_token: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
