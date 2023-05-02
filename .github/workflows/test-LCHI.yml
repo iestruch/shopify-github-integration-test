@@ -9,51 +9,15 @@ jobs:
     environment: LHCI
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v3
+      - name: Lighthouse CI action
+        uses: ./
+        id: lighthouse-ci-action
         with:
-          node-version: 18
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.1
-          bundler: "latest"
-      - name: Install Shopify CLI and LHCI
-        run: npm install -g @shopify/cli @shopify/theme @lhci/cli@0.8.x puppeteer
-      - name: Deploy
-        env:
-          SHOPIFY_FLAG_STORE: "${{ secrets.SHOPIFY_STORE }}"
-          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
-          SHOPIFY_CLI_TTY: 0
-        shell: bash
-        run: |
-          theme_push_log="$(mktemp)"
-          shopify theme push --path . --development --json --password ${{env.SHOPIFY_CLI_THEME_TOKEN}} > "$theme_push_log" && cat "$theme_push_log"
-          preview_url="$(cat "$theme_push_log" | tail -n 1 | jq -r '.theme.preview_url')"
-          preview_id="$(cat "$theme_push_log" | tail -n 1 | jq -r '.theme.id')"
-          echo "url=$preview_url">>$GITHUB_ENV
-          echo "theme_id=$preview_id">>$GITHUB_ENV
-      - name: Clean development theme
-        env:          
-          SHOP_STORE: "${{ secrets.SHOPIFY_STORE }}"
-          SHOP_PASSWORD: "${{ secrets.SHOPIFY_STORE_PASSWORD }}"
-          SHOP_ACCESS_TOKEN: "${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}"
-          LHCI_GITHUB_APP_TOKEN: "${{ secrets.LHCI_GITHUB_APP_TOKEN }}" 
-          LHCI_GITHUB_TOKEN: "${{ secrets.LHCI_GITHUB_TOKEN }}"
-          LHCI_MIN_SCORE_PERFORMANCE: "${{ vars.LHCI_MIN_PERFORMANCE }}"
-          LHCI_MIN_SCORE_ACCESSIBILITY: "${{ vars.LHCI_MIN_ACCESSIBILITY }}"
-        shell: bash
-        run:  |
-          chmod +x ./.scripts/LHCI.sh
-          ./.scripts/LHCI.sh
-      
-      - name: Clean development theme
-        env:
-          SHOPIFY_FLAG_STORE: "${{ secrets.SHOPIFY_STORE }}"
-          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
-          SHOPIFY_CLI_TTY: 0
-          THEME_ID: ${{ env.theme_id }}
-        shell: bash
-        run: |
-          echo "Removing theme ${{env.THEME_ID}}"
-          shopify theme delete -f --password ${{env.SHOPIFY_CLI_THEME_TOKEN}} --theme ${{env.theme_id}}
-        
+          access_token: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          store: ${{ secrets.SHOPIFY_STORE }}
+          password: ${{ secrets.SHOPIFY_STORE_PASSWORD }}
+          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          lhci_min_score_performance: ${{ vars.LHCI_MIN_PERFORMANCE }}
+          lhci_min_score_accessibility: ${{ vars.LHCI_MIN_ACCESSIBILITY }}
+
 
