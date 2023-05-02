@@ -37,7 +37,7 @@
 # # Add global node bin to PATH (from the Dockerfile)
 # export PATH="$PATH:$npm_config_prefix/bin"
 
-export THEME_ROOT = "."
+export THEME_ROOT="."
 
 # END of GitHub Action Specific Code
 ####################################################################
@@ -163,10 +163,10 @@ log "Will run Lighthouse CI on $host"
 
 step "Creating development theme"
 
-if [[ -n "${SHOP_PULL_THEME+x}" ]]; then
-  log "Pulling settings from theme $SHOP_PULL_THEME"
-  shopify theme pull $theme_root --theme ${SHOP_PULL_THEME} --only templates/*.json --only config/settings_data.json
-fi
+# if [[ -n "${SHOP_PULL_THEME+x}" ]]; then
+#   log "Pulling settings from theme $SHOP_PULL_THEME"
+#   shopify theme pull $theme_root --theme ${SHOP_PULL_THEME} --only templates/*.json --only config/settings_data.json
+# fi
 
 theme_push_log="$(mktemp)"
 shopify theme push --development --json $theme_root > "$theme_push_log" && cat "$theme_push_log"
@@ -213,7 +213,7 @@ ci:
         - "--disable-dev-shm-usage"
         - "--disable-gpu"
   upload:
-    target: temporary-public-storage
+    target: filesystem
   assert:
     assertions:
       "categories:performance":
