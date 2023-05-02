@@ -1,6 +1,5 @@
 name: test-LHCI
 on:
-  pull_request:
   workflow_dispatch:
 jobs:
   dev-deploy:
@@ -36,9 +35,10 @@ jobs:
           SHOPIFY_FLAG_STORE: "${{ secrets.SHOPIFY_STORE }}"
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
           SHOPIFY_CLI_TTY: 0
+          THEME_ID: ${{ env.theme_id }}
         shell: bash
         run: |
-          echo "Removing theme {{env.theme_id}}"
+          echo "Removing theme ${{env.THEME_ID}}"
           shopify theme delete --development --password ${{env.SHOPIFY_CLI_THEME_TOKEN}} --theme {{env.theme_id}}
         
 
