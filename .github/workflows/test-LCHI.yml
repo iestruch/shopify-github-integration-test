@@ -1,4 +1,4 @@
-name: test-dev-deploy
+name: test-LHCI
 on:
   workflow_dispatch:
 jobs:
