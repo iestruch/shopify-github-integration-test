@@ -4,4 +4,5 @@ RUN gem install shopify-cli -N -n /usr/local/bin
 RUN shopify version 
 RUN node --version
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
