@@ -1,20 +1,23 @@
 name: Shopify Lighthouse CI
 on:
-    workflow_call:
+    pull_request:
     workflow_dispatch:
 jobs:
-  lhci:
-    name: Lighthouse
-    environment: LHCI
+  test:
     runs-on: ubuntu-latest
+    environment: LHCI
     steps:
-    - uses: actions/checkout@v2
-    - name: Lighthouse
-      uses: shopify/lighthouse-ci-action@v1
-      with:
-        access_token: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
-        store: ${{ secrets.SHOPIFY_STORE }}
-        password: ${{ secrets.SHOPIFY_STORE_PASSWORD }}
-        lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-        lhci_min_score_performance: ${{ vars.LHCI_MIN_PERFORMANCE }}
-        lhci_min_score_accessibility: ${{ vars.LHCI_MIN_ACCESSIBILITY }}
+      - uses: actions/checkout@v2
+      - name: Lighthouse CI action
+        uses: ./.scripts/lhci
+        id: lighthouse-ci-action
+        with:
+          access_token: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          store: ${{ secrets.SHOPIFY_STORE }}
+          password: ${{ secrets.SHOPIFY_STORE_PASSWORD }}
+          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          lhci_min_score_performance: ${{ vars.LHCI_MIN_PERFORMANCE }}
+          lhci_min_score_accessibility: ${{ vars.LHCI_MIN_ACCESSIBILITY }}
+
+
+
