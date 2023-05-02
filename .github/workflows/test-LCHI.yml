@@ -41,7 +41,9 @@ jobs:
           LHCI_MIN_SCORE_PERFORMANCE: "${{ vars.LHCI_MIN_PERFORMANCE }}"
           LHCI_MIN_SCORE_ACCESSIBILITY: "${{ vars.LHCI_MIN_ACCESSIBILITY }}"
         shell: bash
-        run: ./.scripts/LHCI.sh
+        run:  |
+          chmod +x ./.scripts/LHCI.sh
+          ./.scripts/LHCI.sh
       
       - name: Clean development theme
         env:
