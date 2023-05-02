@@ -211,7 +211,7 @@ ci:
         - "--disable-dev-shm-usage"
         - "--disable-gpu"
   upload:
-    target: temporary-public-storage
+    target: filesystem
   assert:
     assertions:
       "categories:performance":
