@@ -32,16 +32,16 @@ jobs:
           echo "url=$preview_url">>$GITHUB_ENV
           echo "theme_id=$preview_id">>$GITHUB_ENV
       - name: Clean development theme
-          env:          
-            SHOP_STORE: "${{ secrets.SHOPIFY_STORE }}"
-            SHOP_PASSWORD: "${{ secrets.SHOPIFY_STORE_PASSWORD }}"
-            SHOP_ACCESS_TOKEN: "${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}"
-            LHCI_GITHUB_APP_TOKEN: "${{ secrets.LHCI_GITHUB_APP_TOKEN }}" 
-            LHCI_GITHUB_TOKEN: "${{ secrets.LHCI_GITHUB_TOKEN }}"
-            LHCI_MIN_SCORE_PERFORMANCE: "${{ vars.LHCI_MIN_PERFORMANCE }}"
-            LHCI_MIN_SCORE_ACCESSIBILITY: "${{ vars.LHCI_MIN_ACCESSIBILITY }}"
-          shell: bash
-          run: ./.scripts/LHCI.sh
+        env:          
+          SHOP_STORE: "${{ secrets.SHOPIFY_STORE }}"
+          SHOP_PASSWORD: "${{ secrets.SHOPIFY_STORE_PASSWORD }}"
+          SHOP_ACCESS_TOKEN: "${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}"
+          LHCI_GITHUB_APP_TOKEN: "${{ secrets.LHCI_GITHUB_APP_TOKEN }}" 
+          LHCI_GITHUB_TOKEN: "${{ secrets.LHCI_GITHUB_TOKEN }}"
+          LHCI_MIN_SCORE_PERFORMANCE: "${{ vars.LHCI_MIN_PERFORMANCE }}"
+          LHCI_MIN_SCORE_ACCESSIBILITY: "${{ vars.LHCI_MIN_ACCESSIBILITY }}"
+        shell: bash
+        run: ./.scripts/LHCI.sh
       
       - name: Clean development theme
         env:
