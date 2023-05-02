@@ -40,6 +40,6 @@ jobs:
         shell: bash
         run: |
           echo "Removing theme ${{env.THEME_ID}}"
-          shopify theme delete -f --store ${{ env.SHOPIFY_FLAG_STORE }} --password ${{env.SHOPIFY_CLI_THEME_TOKEN}} --theme {{env.theme_id}}
+          shopify theme delete -f --password ${{env.SHOPIFY_CLI_THEME_TOKEN}} --theme {{env.theme_id}}
         
 
