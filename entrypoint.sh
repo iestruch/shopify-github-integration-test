@@ -250,3 +250,6 @@ EOF
 
 step "Running Lighthouse CI"
 lhci autorun
+
+step "Removing temporal theme"
+shopify theme delete THEME_ID $preview_id -f
