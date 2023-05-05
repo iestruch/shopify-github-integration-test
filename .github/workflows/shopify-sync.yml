@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       mergedev: ${{ steps.setOuputStep.outputs.output }}
+    permissions:
+      actions: write
     steps:
       - name: user
         if: github.actor == 'shopify[bot]'
