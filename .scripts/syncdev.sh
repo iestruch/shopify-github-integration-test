@@ -15,7 +15,6 @@ echo "Processing last commit"
 echo "$LAST_COMMIT_INFO"
 
 git config user.name  $LAST_COMMIT_AUTHOR
-git config user.email no-reply@github.com
 git checkout $DESTINY_BRANCH
 if ! git merge origin/$ORIGIN_BRANCH ; then
     >&2 echo "ERROR: Failed to merge '$ORIGIN_BRANCH' in '$DESTINY_BRANCH'"
