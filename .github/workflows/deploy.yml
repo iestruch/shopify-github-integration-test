@@ -38,5 +38,5 @@ jobs:
         run: |
           echo "${{ inputs.allowLive }}"
           echo "${{ inputs.allowLive == true && '--allow-live' || ''}}"
-          shopify theme push --path . --theme ${{ vars.SHOPIFY_THEME_ID }} ${{ inputs.allowLive == 'true' && '--allow-live' || ''}}
+          shopify theme push --path . --theme ${{ vars.SHOPIFY_THEME_ID }} ${{ inputs.allowLive == true && '--allow-live' || ''}}
 
