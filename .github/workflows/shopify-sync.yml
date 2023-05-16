@@ -40,3 +40,4 @@ jobs:
     with:
       environment: QA
       branch: develop
+      allowLive: true
