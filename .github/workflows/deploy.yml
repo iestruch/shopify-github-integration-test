@@ -8,6 +8,10 @@ on:
       branch:
         required: true
         type: string
+      allowLive:
+        required: true
+        type: boolean
+        default: false
 jobs:
   deploy:
     name: Deploy
@@ -31,4 +35,7 @@ jobs:
           SHOPIFY_FLAG_STORE: "${{ secrets.SHOPIFY_STORE }}"
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
           SHOPIFY_CLI_TTY: 0
-        run: shopify theme push --path . --theme ${{ vars.SHOPIFY_THEME_ID }}
+        run: |
+          echo "${{ inputs.allowLive == 'true' && '--allow-live' || ''}}"
+          shopify theme push --path . --theme ${{ vars.SHOPIFY_THEME_ID }} ${{ inputs.allowLive == 'true' && '--allow-live' || ''}}
+

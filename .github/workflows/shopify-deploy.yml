@@ -11,3 +11,4 @@ jobs:
     with:
       environment: QA
       branch: ${{github.ref_name}}
+      allowLive: true
