@@ -1,0 +1,24 @@
+name: test-LHCI
+on:
+  workflow_dispatch:
+  pull_request:
+jobs:
+  dev-deploy:
+    name: temporal deploy
+    runs-on: ubuntu-latest
+    environment: LHCI
+    steps:
+      - uses: actions/checkout@v1
+      - name: Lighthouse CI action
+        uses: ./
+        id: lighthouse-ci-action
+        with:
+          access_token: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+          store: ${{ secrets.SHOPIFY_STORE }}
+          password: ${{ secrets.SHOPIFY_STORE_PASSWORD }}
+          lhci_github_app_token: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          lhci_min_score_performance: ${{ vars.LHCI_MIN_PERFORMANCE }}
+          lhci_min_score_accessibility: ${{ vars.LHCI_MIN_ACCESSIBILITY }}
+
+
+

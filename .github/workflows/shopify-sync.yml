@@ -30,7 +30,9 @@ jobs:
       - name: Sync develop branch
         if: env.mergedev == 1
         shell: bash
-        run: ./.scripts/syncdev.sh      
+        run: |
+          chmod +x ./.scripts/syncdev.sh
+          ./.scripts/syncdev.sh      
 
   deploy:
     uses: ./.github/workflows/deploy.yml
